@@ -1,23 +1,23 @@
 import "./styles.css";
 
 const oridginal = {
-  name: "name",
+  name: "personName",
   pets: ["cat", "dog"],
   surname: "net",
-  kids: []
+  kids: ["Jack", "James"]
 };
-const update = { name: "name" };
+const update = { name: "personName", kids: ["Jack"] };
 
 const arrayNames = Object.keys(oridginal).filter((key) =>
   Array.isArray(oridginal[key])
 );
 
-const item = Object.keys(update).map((keyName) => {
-  if (arrayNames.filter((arr) => arr === keyName).length === 0) {
-    console.log(keyName);
-    return Object.assign(keyName, []);
+const item = Object.keys(update).reduce((currentObj, currentKey) => {
+  const arrNameLength = arrayNames.filter((arr) => arr === currentKey).length;
+  if (arrNameLength && Array.isArray(update[currentKey])) {
+    return { ...currentObj, [currentKey]: [] };
   } else {
-    return update[keyName];
+    return { ...currentObj, [currentKey]: update[currentKey] };
   }
 });
 
