@@ -8,7 +8,7 @@ const original = {
   age: 5
 };
 
-//pets should be removed, so {...pets: [], surname}
+//pets should be removed, so {...pets: []}
 const update = { name: "personName", kids: ["Jack"], age: 8 };
 
 /**
