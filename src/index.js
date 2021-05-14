@@ -4,9 +4,10 @@ const original = {
   name: "personName",
   pets: ["cat", "dog"],
   surname: "net",
-  kids: ["Jack", "James"]
+  kids: ["Jack", "James"],
+  age: 5
 };
-const update = { name: "personName", kids: ["Jack"] };
+const update = { name: "personName", kids: ["Jack"], age: 8 };
 
 const fillArray = (original = {}, update = {}) => {
   const arrayNames = Object.keys(original).filter((key) =>
@@ -16,10 +17,15 @@ const fillArray = (original = {}, update = {}) => {
   const item = Object.keys(update).reduce((currentObj, currentKey) => {
     const arrNameLength = arrayNames.filter((arr) => arr === currentKey).length;
 
+    const validatedCurrentObject =
+      currentObj instanceof Object
+        ? { ...currentObj }
+        : { [currentObj]: original[currentObj] };
+
     if (arrNameLength && Array.isArray(update[currentKey])) {
-      return { ...currentObj, [currentKey]: [] };
+      return { ...validatedCurrentObject, [currentKey]: [] };
     } else {
-      return { ...currentObj, [currentKey]: update[currentKey] };
+      return { ...validatedCurrentObject, [currentKey]: update[currentKey] };
     }
   });
 
