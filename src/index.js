@@ -29,6 +29,7 @@ const fillArray = (original = {}, update = {}) => {
   console.log(missingArrays);
   const filledArrays = missingArrays.reduce((currentObj, item) => {
     console.log("inLoop", { [item]: [] });
+    console.log("currentObj", currentObj);
     const obj =
       currentObj instanceof Object
         ? { ...currentObj, [item]: [] }
