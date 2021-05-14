@@ -17,4 +17,12 @@ const original = {
 
 //pets should be removed, so {...pets: []}
 const update = { name: "personName", kids: ["Jack"], surname: "net", age: 8 };
+
+const result = {
+  name: "personName",
+  pets: [],
+  surname: "net",
+  kids: ["Jack", "James"],
+  age: 5
+};
 ```
