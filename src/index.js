@@ -26,39 +26,10 @@ const fillArray = (original = {}, update = {}) => {
 
   const difference = originalKeys.filter((x) => !updateKeys.includes(x));
   const missingArrays = arrayNames.filter((x) => !difference.includes(x));
-  console.log(missingArrays);
   const filledArrays = missingArrays.reduce((currentObj, item) => {
-    console.log("inLoop", { [item]: [] });
-    console.log("currentObj", currentObj);
-    const obj =
-      currentObj instanceof Object
-        ? { ...currentObj, [item]: [] }
-        : { [item]: [] };
-
-    console.log(obj);
-    return obj;
-  });
-
-  console.log("filledArays", filledArrays);
-
-  return filledArrays;
-
-  // const item = Object.keys(update).reduce((currentObj, currentKey) => {
-  //   const arrNameLength = arrayNames.filter((arr) => arr === currentKey).length;
-
-  //   const validatedCurrentObject =
-  //     currentObj instanceof Object
-  //       ? { ...currentObj }
-  //       : { [currentObj]: original[currentObj] };
-
-  //   if (arrNameLength && Array.isArray(update[currentKey])) {
-  //     return { ...validatedCurrentObject, [currentKey]: [] };
-  //   } else {
-  //     return { ...validatedCurrentObject, [currentKey]: update[currentKey] };
-  //   }
-  // });
-
-  // return item;
+    return { ...currentObj, [item]: [] };
+  }, {});
+  return { ...update, ...filledArrays };
 };
 document.getElementById("app").innerHTML = JSON.stringify(
   fillArray(original, update)
