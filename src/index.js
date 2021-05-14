@@ -21,14 +21,22 @@ const fillArray = (original = {}, update = {}) => {
     Array.isArray(original[key])
   );
 
+  if (!arrayNames.length) return update;
+
   const originalKeys = Object.keys(original);
   const updateKeys = Object.keys(update);
 
+  if (!originalKeys.length || !updateKeys.length) return update || {};
+
   const difference = originalKeys.filter((x) => !updateKeys.includes(x));
-  const missingArrays = arrayNames.filter((x) => !difference.includes(x));
+  const missingArrays = arrayNames.filter((x) => difference.includes(x));
   const filledArrays = missingArrays.reduce((currentObj, item) => {
     return { ...currentObj, [item]: [] };
   }, {});
+
+  console.log("difference", difference);
+  console.log("missingArrays", missingArrays);
+  console.log("filledArrays", filledArrays);
   return { ...update, ...filledArrays };
 };
 document.getElementById("app").innerHTML = JSON.stringify(
