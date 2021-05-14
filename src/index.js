@@ -33,12 +33,9 @@ const fillArray = (original = {}, update = {}) => {
   const filledArrays = missingArrays.reduce((currentObj, item) => {
     return { ...currentObj, [item]: [] };
   }, {});
-
-  console.log("difference", difference);
-  console.log("missingArrays", missingArrays);
-  console.log("filledArrays", filledArrays);
   return { ...update, ...filledArrays };
 };
+
 document.getElementById("app").innerHTML = JSON.stringify(
   fillArray(original, update)
 );
