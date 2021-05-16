@@ -4,7 +4,7 @@ Created with CodeSandbox
 
 ## Goal
 
-When an array is removed, the array should default to an emoty array
+When an array is removed, the array should default to an empty array
 
 ```js
 const original = {
