@@ -13,6 +13,7 @@ const original = {
   age: 5
 };
 //pets should be removed, so {...pets: []}
+// nested: arr should be removed, so {...arr: []}
 const update = {
   name: "personName",
   kids: ["Jack"],
@@ -26,13 +27,12 @@ const update = {
   "name":"personName","
   kids":["Jack"],
   "age":8,
-  "pets":[], 
+  "pets":[], <-
   deps: {
     name: "",
-    arr: []
+    arr: []  <-
     }
 } */
-document.getElementById("app").innerHTML = "";
-// JSON.stringify(
-//   fillArray(original, update)
-// );
+document.getElementById("app").innerHTML = JSON.stringify(
+  fillArray(original, update)
+);

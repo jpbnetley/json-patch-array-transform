@@ -1,6 +1,31 @@
 import fillArray from "./utils/fillAray";
 
 describe("test Fill Array", () => {
+  test("see if shallow item gets updated, result shows update", () => {
+    const original = {
+      name: "personName",
+      pets: ["cat", "dog"],
+      surname: "net",
+      kids: ["Jack", "James"]
+    };
+
+    const update = {
+      name: "John",
+      pets: ["cat", "dog"],
+      surname: "net",
+      kids: ["Jack", "James"]
+    };
+
+    const result = {
+      name: "John",
+      pets: ["cat", "dog"],
+      surname: "net",
+      kids: ["Jack", "James"]
+    };
+
+    expect(fillArray(original, update)).toEqual(result);
+  });
+
   test("see if shallow array that got removed, gets replaced with an empty array", () => {
     const original = {
       name: "personName",
@@ -30,39 +55,39 @@ describe("test Fill Array", () => {
     const update = {
       name: "personName",
       pets: [{ name: "cat1", kittens: ["lew", "Chris"] }],
-      kids: ["Jack"]
+      kids: ["Jack", "James"]
     };
 
     const result = {
       name: "personName",
       pets: [{ name: "cat1", kittens: ["lew", "Chris"] }],
-      kids: ["Jack"]
+      kids: ["Jack", "James"]
     };
 
     expect(fillArray(original, update)).toEqual(result);
   });
 
-  test("see if deep array that got removed, produces empty array", () => {
+  test("see if shallow array with objects that got removed, produces empty array", () => {
     const original = {
-      name: "personName",
+      name: "John",
       pets: [
         { name: "cat1", kittens: ["lew", "Chris"] },
         { name: "cat12", kittens: ["Denice", "Jamie"] }
       ],
-      surname: "net",
+      surname: "Doe",
       kids: ["Jack", "James"]
     };
 
-    const update = { name: "personName" };
+    const update = { name: "Jane", kids: ["Jack"] };
 
-    const result = { name: "personName", kids: ["Jack"], pets: [] };
+    const result = { name: "Jane", kids: ["Jack"], pets: [] };
 
     expect(fillArray(original, update)).toEqual(result);
   });
 
   test("see if deep array that got removed, gets replaced with an empty array", () => {
     const original = {
-      name: "personName",
+      name: "John",
       pets: ["cat", "dog"],
       surname: "net",
       kids: ["Jack", "James"],
@@ -74,21 +99,60 @@ describe("test Fill Array", () => {
     };
     //deps.array should be removed, so {...deps.array : []}
     const update = {
-      name: "personName",
+      name: "John",
       kids: ["Jack"],
       pets: ["cat", "dog"],
+      surname: "net",
       age: 8,
       deps: {
         name: "Kat"
       }
     };
     const result = {
-      name: "personName",
+      name: "John",
+      kids: ["Jack"],
+      age: 8,
+      pets: ["cat", "dog"],
+      surname: "net",
+      deps: {
+        name: "Kat",
+        arr: []
+      }
+    };
+
+    expect(fillArray(original, update)).toEqual(result);
+  });
+
+  test("see if shalow and deep array that got removed, gets replaced with an empty array", () => {
+    const original = {
+      name: "John",
+      pets: ["cat", "dog"],
+      surname: "net",
+      kids: ["Jack", "James"],
+      deps: {
+        name: "Kat",
+        arr: [1, 2, 3]
+      },
+      age: 5
+    };
+    //deps.array should be removed, so {...deps.array : []}
+    const update = {
+      name: "John",
+      kids: ["Jack"],
+      surname: "net",
+      age: 8,
+      deps: {
+        name: "Kat"
+      }
+    };
+    const result = {
+      name: "John",
       kids: ["Jack"],
       age: 8,
       pets: [],
+      surname: "net",
       deps: {
-        name: "",
+        name: "Kat",
         arr: []
       }
     };
