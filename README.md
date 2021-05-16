@@ -4,7 +4,7 @@ Created with CodeSandbox
 
 ## Goal
 
-JSON Patch to remove all entries for an array field then either remove all the entries in that field or replace the field with an empty array
+When an array is removed, the array should default to an emoty array
 
 ```js
 const original = {
