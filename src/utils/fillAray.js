@@ -1,7 +1,7 @@
 /**
  * Gets the nested object
  * @param {*} original that needs to be updated
- * @param {*} update values returned form the FE
+ * @param {*} update values returned from the FE
  */
 const getNested = (original = {}, update = {}) => {
   return Object.keys(original).reduce((acc, key) => {
@@ -19,12 +19,10 @@ const getNested = (original = {}, update = {}) => {
 /**
  * Fills the removed arrays with a empty array
  * @param {*} original that needs to be updated
- * @param {*} update values returned form the FE
+ * @param {*} update values returned from the FE
  */
 const fillArray = (original = {}, update = {}) => {
   const nested = getNested(original, update);
-
-  console.log("nested", nested);
 
   const arrayNames = Object.keys(original).filter((key) =>
     Array.isArray(original[key])

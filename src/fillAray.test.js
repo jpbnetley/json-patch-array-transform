@@ -159,4 +159,18 @@ describe("test Fill Array", () => {
 
     expect(fillArray(original, update)).toEqual(result);
   });
+
+  test("see if all patch operations gets sent for a nested object, add 1 item", () => {
+    const original = { name: "jack", kid: { name: "james" } };
+    const update = {
+      name: "jack",
+      kid: { name: "james", surname: "Pieterse" }
+    };
+    const result = {
+      name: "jack",
+      kid: { name: "james", surname: "Pieterse" }
+    };
+
+    expect(fillArray(original, update)).toEqual(result);
+  });
 });
